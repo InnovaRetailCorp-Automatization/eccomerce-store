@@ -6,9 +6,14 @@ import Container from "@/components/ui/container";
 
 export const revalidate = 0;
 
+
 const HomePage = async () => {
   const products = await getProducts({ isFeatured: true });
-  const billboard = await getBillboard("c0072bdd-2be9-4a58-a929-58e7aba8e1e2");
+  const billboardId = process.env.BILLBOARD_ID;
+  if (!billboardId) {
+    throw new Error("BILLBOARD_ID is not defined in the environment variables.");
+  }
+  const billboard = await getBillboard(billboardId);
 
   return (
     <Container>
