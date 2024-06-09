@@ -1,0 +1,19 @@
+apiVersion : apps/v1
+kind: Deployment
+metadata:
+  name: ecommercestore 
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ecommercestore
+  template:
+    metadata:
+      labels:
+        app: ecommercestore 
+    spec:
+      containers:
+        - name: ecommercestore 
+          image: innovacr.azurecr.io/ecommercestore
+          ports:
+          - containerPort: 3001
